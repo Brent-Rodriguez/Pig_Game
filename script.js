@@ -14,16 +14,31 @@ const btnRoll = document.querySelector('.btn--roll')
 const btnHold = document.querySelector('.btn--hold')
 
 
-//Starting Conditions
-score0_El.textContent = 0
-score1_El.textContent = 0
-dice_El.classList.add('hidden')
+let scores, 
+    currentScore, 
+    activePlayer, 
+    playing
 
-const scores = [0, 0]
+const init = () => {
+  //Starting Conditions
+  scores = [0, 0]
+  currentScore = 0
+  activePlayer = 0
+  playing = true
 
-let currentScore = 0
-let activePlayer = 0
-let playing = true
+  score0_El.textContent = 0
+  score1_El.textContent = 0
+  current0_El.textContent = 0
+  current1_El.textContent = 0
+
+  dice_El.classList.add('hidden')
+  player0_El.classList.add('player--active')
+  player0_El.classList.remove('player--winner')
+  player1_El.classList.remove('player--winner')
+  player1_El.classList.remove('player--active')
+}
+
+init()
 
 
 const switchPlayer = () => {
@@ -57,7 +72,7 @@ btnHold.addEventListener('click', () => {
     scores[activePlayer] += currentScore   //Add current scors to Active Player
     document.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer]
 
-    if(scores[activePlayer] >= 20){
+    if(scores[activePlayer] >= 100){
       playing = false
       dice_El.classList.add('hidden')
       //Game Winner
@@ -69,8 +84,5 @@ btnHold.addEventListener('click', () => {
   }
 })
   
-
 //New game
-btnNew.addEventListener('click', () => {
-
-})
+btnNew.addEventListener('click', init)
