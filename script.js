@@ -29,7 +29,7 @@ btnRoll.addEventListener('click', () => {
   if(dice !== 1){
     currentScore += dice                           //Add dice to Current Score
     document.getElementById(`current--${activePlayer}`).textContent = currentScore
-  } else {
+  } else {                                         //Switch to next player
     document.getElementById(`current--${activePlayer}`).textContent = 0
     activePlayer = activePlayer === 0 ? 1 : 0
     currentScore = 0 
